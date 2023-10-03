@@ -10,5 +10,9 @@ League of Legends (LoL) é um popular jogo online estratégico, onde jogadores f
 Por causa disso, resolvemos escolher League of Legends para ser o tema do nosso projeto de Banco de Dados.
 ## Contribuidores
 **Bruno Tarquinio Silva**
+- Matrícula: 211061494
+- GitHub: https://github.com/brunotarquinio
 
 **Pedro Luciano Azevedo**
+- Matrícula: 212005453
+- GitHub: https://github.com/PedroALuciano
