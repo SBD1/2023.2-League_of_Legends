@@ -16,3 +16,6 @@ Por causa disso, resolvemos escolher League of Legends para ser o tema do nosso 
 **Pedro Luciano Azevedo**
 - Matrícula: 212005453
 - GitHub: https://github.com/PedroALuciano
+
+**Isabelle Costa**
+- Github: https://github.com/isacostaf
