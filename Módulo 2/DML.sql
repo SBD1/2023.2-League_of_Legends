@@ -21,7 +21,7 @@ INSERT INTO Loja (nome_loja, local, id_sala, qtd_itens)
 VALUES ('Loja de ferramentas', 'Cidade', 1, 18);
 
 INSERT INTO Area_de_Recuperacao (nome_mapa, id_sala, recuperacao_vida_por_seg, recuperacao_energia_por_seg)
-VALUES ('League of Legends', 5, 8);
+VALUES ('League of Legends', 1, 8, 5);
 
 INSERT INTO Item (id_item, nome_item, local, id_sala, preco_item, dano_item)
 VALUES (1000, 'Espada', 'Floresta', 1, 50, 10);
