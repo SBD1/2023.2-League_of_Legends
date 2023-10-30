@@ -18,4 +18,5 @@ Por causa disso, resolvemos escolher League of Legends para ser o tema do nosso 
 - GitHub: https://github.com/PedroALuciano
 
 **Isabelle Costa**
+- Matrícula: 211039500
 - Github: https://github.com/isacostaf
