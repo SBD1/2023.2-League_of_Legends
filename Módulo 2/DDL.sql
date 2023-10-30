@@ -41,7 +41,7 @@ CREATE TABLE NPC (
 
 CREATE TABLE Loja (
 	nome_loja varchar(35) PRIMARY KEY,
-	local varchar(15) NOT NULL,
+	nome_area varchar(15) NOT NULL,
 	id_sala int, 
 	qtd_itens int NOT NULL,
 	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala) 
@@ -60,7 +60,7 @@ CREATE TABLE Area_de_Recuperacao (
 CREATE TABLE Item (
 	id_item int PRIMARY KEY,
 	nome_item varchar(35) NOT NULL,
-	local varchar(15) NOT NULL,
+	nome_area varchar(15) NOT NULL,
 	id_sala int, 
 	preco_item int NOT NULL,
 	dano_item int NOT NULL,	
@@ -77,7 +77,7 @@ CREATE TABLE Habilidades (
 CREATE TABLE Instancia (
 	id_instancia int PRIMARY KEY,
 	id_npc int,
-	local varchar(25) NOT NULL,
+	nome_area varchar(25) NOT NULL,
 	funcao_inst varchar(50),
 	FOREIGN KEY (id_npc) REFERENCES Personagem (id_personagem)
 );
@@ -85,27 +85,24 @@ CREATE TABLE Instancia (
 CREATE TABLE Boss (
 	id_boss int,
 	recompensa varchar(35) NOT NULL,
-	local varchar(15) NOT NULL,
+	nome_area varchar(15) NOT NULL,
 	FOREIGN KEY (id_boss) REFERENCES Personagem (id_personagem)
 );
 
 CREATE TABLE Itens_de_Tank (
 	id_item int,
-	nome_item varchar(25) NOT NULL,
 	vida_adicional int NOT NULL,
 	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Itens_de_mago (
 	id_item int,
-	nome_item varchar(25) NOT NULL,
 	dano_magico_adicional int NOT NULL,
 	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Itens_de_lutador (
 	id_item int,
-	nome_item varchar(25) NOT NULL,
 	dano_fisico_adicional int NOT NULL,
 	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
