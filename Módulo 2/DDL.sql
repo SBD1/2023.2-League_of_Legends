@@ -4,7 +4,7 @@ CREATE TABLE Mapa (
 );
 
 CREATE TABLE Sala (
-	Id_sala int PRIMARY KEY
+	id_sala int PRIMARY KEY,
 	nome_mapa varchar (35),
 	Regiao varchar(30) NOT NULL,
 	FOREIGN KEY (nome_mapa) REFERENCES Mapa (Nome)
@@ -35,7 +35,6 @@ CREATE TABLE PC (
 
 CREATE TABLE NPC (
 	id_npc int,
-	nome_npc varchar(35), 
 	funcao varchar(100) NOT NULL,
 	FOREIGN KEY (id_npc) REFERENCES Personagem (id_personagem) 
 );
@@ -52,7 +51,9 @@ CREATE TABLE Area_de_Recuperacao (
 	nome_mapa varchar(35),
 	id_sala int,
 	recuperacao_vida_por_seg int NOT NULL,
-	recuperacao_energia_por_seg int NOT NULL
+	recuperacao_energia_por_seg int NOT NULL,
+	FOREIGN KEY (nome_mapa) REFERENCES Mapa (Nome),
+	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala)
 );
 	
 
@@ -63,9 +64,7 @@ CREATE TABLE Item (
 	id_sala int, 
 	preco_item int NOT NULL,
 	dano_item int NOT NULL,	
-	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala),
-
-	
+	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala)
 );
 
 CREATE TABLE Habilidades (
@@ -93,24 +92,28 @@ CREATE TABLE Boss (
 CREATE TABLE Itens_de_Tank (
 	id_item int,
 	nome_item varchar(25) NOT NULL,
-	vida_adicional int NOT NULL
+	vida_adicional int NOT NULL,
+	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Itens_de_mago (
 	id_item int,
 	nome_item varchar(25) NOT NULL,
-	dano_magico_adicional int NOT NULL
+	dano_magico_adicional int NOT NULL,
+	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Itens_de_lutador (
 	id_item int,
 	nome_item varchar(25) NOT NULL,
-	dano_fisico_adicional int NOT NULL
+	dano_fisico_adicional int NOT NULL,
+	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Missoes (
 	id_missao int PRIMARY KEY,
 	id_npc int,
 	descricao varchar(100) NOT NULL,
-	nivel_necessario int NOT NULL
+	nivel_necessario int NOT NULL,
+	FOREIGN KEY (id_npc) REFERENCES Personagem (id_personagem)
 );
