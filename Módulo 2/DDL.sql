@@ -1,4 +1,4 @@
--- Crias as tabelas do projeto
+-- Cria as tabelas do projeto
 
 CREATE TABLE Inferior (
 	nome_area char(8) PRIMARY KEY,
