@@ -18,13 +18,13 @@ VALUES (100, 1, 10, 'user');
 INSERT INTO NPC (id_npc, funcao)
 VALUES (20, 'ajudar o PC a lutar');
 
-INSERT INTO Loja (nome_loja, local, id_sala, qtd_itens)
+INSERT INTO Loja (nome_loja, nome_area, id_sala, qtd_itens)
 VALUES ('Loja de ferramentas', 'Cidade', 1, 18);
 
 INSERT INTO Area_de_Recuperacao (nome_mapa, id_sala, recuperacao_vida_por_seg, recuperacao_energia_por_seg)
 VALUES ('League of Legends', 1, 8, 5);
 
-INSERT INTO Item (id_item, nome_item, local, id_sala, preco_item, dano_item)
+INSERT INTO Item (id_item, nome_item, nome_area, id_sala, preco_item, dano_item)
 VALUES
   (1000, 'Espada', 'Floresta', 1, 50, 10),
   (2000, 'Pocao', 'Deserto', 1, 60, 40),
@@ -33,10 +33,10 @@ VALUES
 INSERT INTO Habilidades (id_habilidade, nome_habilidade, descricao, custo_de_energia)
 VALUES (110, 'Voar', 'O personagem adquire a habilidade de voar', 20);
 
-INSERT INTO Instancia (id_instancia, id_npc, local, funcao_inst)
+INSERT INTO Instancia (id_instancia, id_npc, nome_area, funcao_inst)
 VALUES (120, 20, 'Floresta', 'informarcao');
 
-INSERT INTO Boss (id_boss, recompensa, local)
+INSERT INTO Boss (id_boss, recompensa, nome_area)
 VALUES (30, '100 moedas', 'Deserto');
 
 INSERT INTO Itens_de_Tank (id_item, nome_item, vida_adicional)
