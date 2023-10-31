@@ -39,14 +39,14 @@ VALUES (120, 20, 'Floresta', 'informarcao');
 INSERT INTO Boss (id_boss, recompensa, nome_area)
 VALUES (30, '100 moedas', 'Deserto');
 
-INSERT INTO Itens_de_Tank (id_item, nome_item, vida_adicional)
-VALUES (2000, 'Pocao', 30);
+INSERT INTO Itens_de_Tank (id_item, vida_adicional)
+VALUES (2000, 30);
 
-INSERT INTO Itens_de_mago (id_item, nome_item, dano_magico_adicional)
-VALUES (3000, 'Feitico', 40);
+INSERT INTO Itens_de_mago (id_item, dano_magico_adicional)
+VALUES (3000, 40);
 
-INSERT INTO Itens_de_lutador (id_item, nome_item, dano_fisico_adicional)
-VALUES (1000, 'Espaca', 25);
+INSERT INTO Itens_de_lutador (id_item, dano_fisico_adicional)
+VALUES (1000, 25);
 
 INSERT INTO Missoes (id_missao, id_npc, descricao, nivel_necessario)
 VALUES (160, 20, 'mate 5 inimigos', 4);
