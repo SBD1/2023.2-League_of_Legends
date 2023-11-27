@@ -1,52 +1,79 @@
 -- inserção de dados
 
 INSERT INTO Mapa (Nome, Tamanho)
-VALUES ('League of Legends', 5);
+VALUES ('Summuners Rift', 5);
 
 INSERT INTO Sala (Id_sala, nome_mapa, Regiao)
-VALUES (1, 'League of Legends', 'Deserto');
+VALUES 
+    (1, 'Spawn', 'Floreta'),
+    (2, 'Inferior', 'Rota'),
+    (3, 'Meio', 'Rota'),
+    (4, 'Jungle', 'Floreta'),
+    (5, 'Topo', 'Rota');
+
 
 INSERT INTO Personagem (id_personagem, nome_personagem, especie, classe, vida, nivel, energia, dano, forca, cura, historia)
 VALUES 
-  (10, 'Kitana', 'Humana', 'Assasina', 85, 3, 90, 10, 55, 80, 'Assassina de 10.000 anos e princesa da Exoterra'),
-  (20, 'Mileena', 'Humana', 'Assasina', 50, 2, 34, 5, 90, 67, 'Mileena é um clone da princesa Kitana feita por Shang Tsung para Shao Kahn feita para substituir a princesa'),
-  (30, 'Jade', 'Humana', 'Assasina', 40, 4, 40, 15, 20, 60, 'Jade é amiga de longa data de Kitana, e é uma das assassinas e espiã pessoal de Shao Kahn');
+  (10, 'Jinx', 'Humana', 'Atiradora', 60, 3, 70, 10, 55, 30, 'Uma criminosa impulsiva e maníaca de Zaun, Jinx vive para disseminar o caos sem se preocupar com as consequências.'),
+  (20, 'Zed', 'Humana', 'Assasino', 55, 3, 80, 15, 65, 35, 'O homem conhecido como Zed, ex-membro da honorável Ordem Kinkou, agora é líder de um bando de assassinos.'),
+  (30, 'Annie', 'Humana', 'Mago', 40, 3, 70, 15, 70, 30, 'Perigosa, mas adoravelmente precoce, Annie é uma pequena maga com imenso poder piromaníaco.'),
+  (40, 'Dr.Mundo', 'Humana', 'Tank', 95, 3, 60, 70, 70, 55, 'Dr. Mundo enche-se de produtos químicos, curando instantaneamente uma porcentagem da própria Vida perdida.'),
+  (50, 'Sett', 'Humoide', 'Lutador', 80, 3, 65, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.');
+
 
 INSERT INTO PC (id_pc, id_sala, id_personagem, nome_conta)
-VALUES (100, 1, 10, 'user');
+VALUES (1, 1, 10, 'user');
 
-INSERT INTO NPC (id_npc, funcao)
-VALUES (20, 'ajudar o PC a lutar');
+INSERT INTO NPC (id_npc, id_personagem, funcao)
+VALUES 
+  (100, 10, 'Atirar e matar o PC, impedindo que avance'),
+  (200, 20, 'Causar feridas com suas laminas e matar o PC, impedindo que avance'),
+  (300, 30, 'Causar dano magico e matar o PC, impedindo que avance'),
+  (400, 40, 'Tankar e matar o PC, impedindo que avance'),
+  (500, 50, 'Causar dano de ataque e matar o PC, impedindo que avance');
 
 INSERT INTO Loja (nome_loja, nome_area, id_sala, qtd_itens)
-VALUES ('Loja de ferramentas', 'Cidade', 1, 18);
+VALUES ('Loja de Itens', 'Spawn', 1, 8);
 
-INSERT INTO Area_de_Recuperacao (nome_mapa, id_sala, recuperacao_vida_por_seg, recuperacao_energia_por_seg)
-VALUES ('League of Legends', 1, 8, 5);
+INSERT INTO Area_de_Recuperacao (nome_area, id_sala, recuperacao_vida_por_seg, recuperacao_energia_por_seg)
+VALUES ('Spawn', 1, 20, 20);
 
 INSERT INTO Item (id_item, nome_item, nome_area, id_sala, preco_item, dano_item)
 VALUES
-  (1000, 'Espada', 'Floresta', 1, 50, 10),
-  (2000, 'Pocao', 'Deserto', 1, 60, 40),
-  (3000, 'Feitico', 'Cidas', 1, 90, 50);
+  (1000, 'Foice Espectral', 'Floresta', 1, 50, 10),
+  (2000, 'Escudo Relicári', 'Floresta', 1, 60, 5),
+  (3000, 'Anel de Doran', 'Floresta', 1, 90, 15),
+  (4000, 'Lacre Sombrio', 'Floresta', 1, 90, 15),
+  (5000, 'Gume do Ladrão Arcano', 'Floresta', 1, 65, 8),
+  (6000, 'Lâmina de Doran', 'Floresta', 1, 65, 8),
+  (7000, 'Espada Longa', 'Floresta', 1, 90, 20),
+  (8000, 'Escudo de Doran', 'Floresta', 1, 65, 5);
 
+INSERT INTO Itens_de_Tank (id_item, vida_adicional)
+VALUES
+  (2000, 10),
+  (8000, 15);
+
+INSERT INTO Itens_de_mago (id_item, dano_magico_adicional)
+VALUES
+  (3000, 5),
+  (4000, 5),
+  (5000, 3);
+
+INSERT INTO Itens_de_lutador (id_item, dano_fisico_adicional)
+VALUES
+  (1000, 5),
+  (6000, 5),
+  (7000, 5),
+  
 INSERT INTO Habilidades (id_habilidade, nome_habilidade, descricao, custo_de_energia)
-VALUES (110, 'Voar', 'O personagem adquire a habilidade de voar', 20);
+VALUES (110, 'Voar', 'O personagem adquire a habilidade de voar', 10);
 
 INSERT INTO Instancia (id_instancia, id_npc, nome_area, funcao_inst)
 VALUES (120, 20, 'Floresta', 'informarcao');
 
 INSERT INTO Boss (id_boss, recompensa, nome_area)
 VALUES (30, '100 moedas', 'Deserto');
-
-INSERT INTO Itens_de_Tank (id_item, vida_adicional)
-VALUES (2000, 30);
-
-INSERT INTO Itens_de_mago (id_item, dano_magico_adicional)
-VALUES (3000, 40);
-
-INSERT INTO Itens_de_lutador (id_item, dano_fisico_adicional)
-VALUES (1000, 25);
 
 INSERT INTO Missoes (id_missao, id_npc, descricao, nivel_necessario)
 VALUES (160, 20, 'mate 5 inimigos', 4);
