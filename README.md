@@ -11,12 +11,12 @@ Por causa disso, resolvemos escolher League of Legends para ser o tema do nosso 
 ## Contribuidores
 **Bruno Tarquinio Silva**
 - Matrícula: 211061494
-- GitHub: https://github.com/brunotarquinio
+- GitHub: [brunotarquinio](https://github.com/brunotarquinio)
 
 **Pedro Luciano Azevedo**
 - Matrícula: 212005453
-- GitHub: https://github.com/PedroALuciano
+- GitHub: [PedroALuciano](https://github.com/PedroALuciano)
 
 **Isabelle Costa**
 - Matrícula: 211039500
-- Github: https://github.com/isacostaf
+- Github: [isacostaf](https://github.com/isacostaf)
