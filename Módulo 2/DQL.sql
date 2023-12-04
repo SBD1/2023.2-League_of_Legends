@@ -11,6 +11,21 @@ WHERE
     AND I.id_item = 'id_item'
     AND P.gold >= I.preco_item;
 
+-- Verifica se o personagem tem energia suficiente para a habilidade
+SELECT
+    P.nome_personagem,
+    H.nome_habilidade,
+    H.custo_de_energia AS custo_energia_habilidade,
+    P.energia
+FROM
+    Personagem P
+JOIN
+    Habilidades H ON P.id_personagem = H.id_habilidade
+WHERE
+    P.id_personagem = 'id_personagem'
+    AND H.id_habilidade = 'id_habilidade'
+    AND P.energia >= H.custo_de_energia;
+
 -- Verifica se a vida do personagem está em 100
 SELECT nome_personagem, vida
 FROM Personagem
