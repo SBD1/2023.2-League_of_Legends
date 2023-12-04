@@ -1,3 +1,38 @@
+-- Verifica se o personagem tem gold suficiente para comprar o item
+SELECT
+    P.nome_personagem,
+    I.nome_item,
+    P.gold AS gold_personagem,
+    I.preco_item
+FROM Personagem P
+JOIN Item I ON P.id_sala = I.id_sala
+WHERE
+    P.id_personagem = 'id_personagem'
+    AND I.id_item = 'id_item'
+    AND P.gold >= I.preco_item;
+
+-- Verifica se a vida do personagem está em 100
+SELECT nome_personagem, vida
+FROM Personagem
+WHERE
+    id_personagem = 'id_personagem'
+    AND vida = 100;
+
+-- Verifica se o personagem tem nível suficiente para a missão
+SELECT
+    P.nome_personagem,
+    M.descricao AS descricao_missao,
+    M.nivel_necessario
+FROM
+    Personagem P
+JOIN
+    Missoes M ON P.id_npc = M.id_npc
+WHERE
+    P.id_personagem = 'id_personagem'
+    AND M.id_missao = 'id_missao'
+    AND P.nivel >= M.nivel_necessario;
+
+
 -- obter detalhes do personagem junto com a sala em que estão:
 
 SELECT P.nome_personagem, S.nome_mapa, S.Regiao
