@@ -24,13 +24,13 @@ VALUES
 INSERT INTO PC (id_pc, id_sala, id_personagem, slot_item, nome_conta)
 VALUES (1, 1, 10, 4, 'user');
 
-INSERT INTO NPC (id_npc, id_personagem, funcao)
+INSERT INTO NPC (id_npc, funcao)
 VALUES 
-  (100, 10, 'Atirar e matar o PC, impedindo que avance'),
-  (200, 20, 'Causar feridas com suas laminas e matar o PC, impedindo que avance'),
-  (300, 30, 'Causar dano magico e matar o PC, impedindo que avance'),
-  (400, 40, 'Tankar e matar o PC, impedindo que avance'),
-  (500, 50, 'Causar dano de ataque e matar o PC, impedindo que avance');
+  (100, 'Atirar e matar o PC, impedindo que avance'),
+  (200, 'Causar feridas com suas laminas e matar o PC, impedindo que avance'),
+  (300, 'Causar dano magico e matar o PC, impedindo que avance'),
+  (400, 'Tankar e matar o PC, impedindo que avance'),
+  (500, 'Causar dano de ataque e matar o PC, impedindo que avance');
 
 INSERT INTO Loja (nome_loja, nome_area, id_sala, qtd_itens)
 VALUES ('Loja de Itens', 'Spawn', 1, 8);
