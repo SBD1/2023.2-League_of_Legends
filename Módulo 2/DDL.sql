@@ -29,7 +29,7 @@ CREATE TABLE PC (
 	id_sala int, 
 	id_personagem int,
 	gold int,
-	slot_item,
+	slot_item int,
 	nome_conta varchar(20) NOT NULL,
 	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala),
 	FOREIGN KEY (id_personagem) REFERENCES Personagem (id_personagem) 
