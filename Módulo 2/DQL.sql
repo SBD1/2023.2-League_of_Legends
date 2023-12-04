@@ -1,3 +1,27 @@
+-- Obter informações sobre os boss's e as recompensas associadas a eles:
+
+SELECT B.id_boss, B.recompensa, B.nome_area
+FROM Boss B;
+
+-- Listar os itens específicos para cada tipo de personagem (tank, mago, lutador):
+
+SELECT T.id_item AS id_item_tank, I.vida_adicional
+FROM Itens_de_Tank T
+JOIN Item I ON T.id_item = I.id_item;
+
+SELECT M.id_item AS id_item_mago, I.dano_magico_adicional
+FROM Itens_de_Mago M
+JOIN Item I ON M.id_item = I.id_item;
+
+SELECT L.id_item AS id_item_lutador, I.dano_fisico_adicional
+FROM Itens_de_Lutador L
+JOIN Item I ON L.id_item = I.id_item;
+
+-- Listar todos os NPCs e a função deles:
+
+SELECT id_npc, funcao
+FROM NPC;
+
 -- Verifica se o personagem tem gold suficiente para comprar o item
 SELECT
     P.nome_personagem,
