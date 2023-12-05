@@ -38,33 +38,22 @@ VALUES ('Loja de Itens', 'Spawn', 1, 8);
 INSERT INTO Area_de_Recuperacao (nome_area, id_sala, recuperacao_vida_por_seg, recuperacao_energia_por_seg)
 VALUES ('Spawn', 1, 20, 20);
 
-INSERT INTO Item (id_item, nome_item, nome_area, id_sala, preco_item, dano_item)
+INSERT INTO Itens_de_Tank (id_item, nome_item, nome_area, id_sala, preco_item, dano_item, vida_adicional)
 VALUES
-  (1000, 'Foice Espectral', 'Floresta', 1, 50, 10),
-  (2000, 'Escudo Relicári', 'Floresta', 1, 60, 5),
-  (3000, 'Anel de Doran', 'Floresta', 1, 90, 15),
-  (4000, 'Lacre Sombrio', 'Floresta', 1, 90, 15),
-  (5000, 'Gume do Ladrão Arcano', 'Floresta', 1, 65, 8),
-  (6000, 'Lâmina de Doran', 'Floresta', 1, 65, 8),
-  (7000, 'Espada Longa', 'Floresta', 1, 90, 20),
-  (8000, 'Escudo de Doran', 'Floresta', 1, 65, 5);
+  (2000, 'Escudo Relicári', 'Floresta', 1, 60, 5, 10),
+  (8000, 'Escudo de Doran', 'Floresta', 1, 65, 5, 15);
 
-INSERT INTO Itens_de_Tank (id_item, vida_adicional)
+INSERT INTO Itens_de_mago (id_item, nome_item, nome_area, id_sala, preco_item, dano_item, dano_magico_adicional)
 VALUES
-  (2000, 10),
-  (8000, 15);
+  (3000, 'Anel de Doran', 'Floresta', 1, 90, 15, 5),
+  (4000, 'Lacre Sombrio', 'Floresta', 1, 90, 15, 5),
+  (5000, 'Gume do Ladrão Arcano', 'Floresta', 1, 65, 8, 3);
 
-INSERT INTO Itens_de_mago (id_item, dano_magico_adicional)
+INSERT INTO Itens_de_lutador (id_item, nome_item, nome_area, id_sala, preco_item, dano_item, dano_fisico_adicional)
 VALUES
-  (3000, 5),
-  (4000, 5),
-  (5000, 3);
-
-INSERT INTO Itens_de_lutador (id_item, dano_fisico_adicional)
-VALUES
-  (1000, 5),
-  (6000, 5),
-  (7000, 5),
+  (1000, 'Foice Espectral', 'Floresta', 1, 50, 10, 5),
+  (6000, 'Lâmina de Doran', 'Floresta', 1, 65, 8, 5),
+  (7000, 'Espada Longa', 'Floresta', 1, 90, 20, 5),
   
 INSERT INTO Habilidades (id_habilidade, nome_habilidade, descricao, custo_de_energia)
 VALUES (110, 'Voar', 'O personagem adquire a habilidade de voar', 10);
