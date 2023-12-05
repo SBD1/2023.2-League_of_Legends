@@ -70,3 +70,17 @@ BEFORE UPDATE OR INSERT ON PC
 FOR EACH ROW EXECUTE PROCEDURE check_compra_item();
 
 ----------------------------------------------------------------
+CREATE FUNCTION personagem_existe() RETURNS trigger AS $personagem_existe$
+
+BEGIN
+	PERFORM * FROM Personagem where id_personagem = NEW.id_personagem;
+	IF FOUND THEN 
+		RAISE EXCEPTION 'Este personagem já existe!';
+	END IF;
+	RETURN NEW;
+END;
+$personagem_existe$ LANGUAGE plpgsql;
+
+CREATE TRIGGER personagem_existe
+BEFORE INSERT ON Personagem 
+FOR EACH ROW EXECUTE PROCEDURE personagem_existe();
