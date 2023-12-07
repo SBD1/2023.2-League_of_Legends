@@ -38,8 +38,6 @@ def exibir_info_personagem(conn, id_personagem):
     else:
         print("Personagem não encontrado!")
 
-
-
 def exibir_npcs_sala(conn, id_sala):
     cursor = conn.cursor()
     cursor.execute("SELECT id_npc, funcao FROM NPC WHERE id_npc IN (SELECT id_personagem FROM PC WHERE id_sala = %s)", (id_sala,))
@@ -51,6 +49,44 @@ def exibir_npcs_sala(conn, id_sala):
     else:
         print("Não há NPCs nesta sala.")
 
+def exibir_info_item_tank(conn, id_sala):
+    cursor = conn.cursor()
+    cursor.execute("SELECT id_item, nome_item, preco_item, dano_item, vida_adicional FROM Itens_de_Tank ")
+    item = cursor.fetchone()
+    if item:
+        print(f"ID do Item: {item[1]}")
+        print(f"Nome: {item[2]}")
+        print(f"Preço: {item[3]}")
+        print(f"Dano: {item[4]}")
+        print(f"Vida adicional: {item[5]}")
+    else:
+        print("Itens não encontrados!")
+
+def exibir_info_item_mago(conn, id_sala):
+    cursor = conn.cursor()
+    cursor.execute("SELECT id_item, nome_item, preco_item, dano_item, dano_magico_adicional FROM Itens_de_mago ")
+    item = cursor.fetchone()
+    if item:
+        print(f"ID do Item: {item[1]}")
+        print(f"Nome: {item[2]}")
+        print(f"Preço: {item[3]}")
+        print(f"Dano: {item[4]}")
+        print(f"Dano magico adicional: {item[5]}")
+    else:
+        print("Itens não encontrados!")
+
+def exibir_info_item_lutador(conn, id_sala):
+    cursor = conn.cursor()
+    cursor.execute("SELECT id_item, nome_item, preco_item, dano_item, dano_fisico_adicional FROM Itens_de_lutador ")
+    item = cursor.fetchone()
+    if item:
+        print(f"ID do Item: {item[1]}")
+        print(f"Nome: {item[2]}")
+        print(f"Preço: {item[3]}")
+        print(f"Dano: {item[4]}")
+        print(f"Dano fisico adicional: {item[5]}")
+    else:
+        print("Itens não encontrados!")
 
 def comprar_item(conn, nome_loja, id_sala, id_personagem, id_item):
     cursor = conn.cursor()
