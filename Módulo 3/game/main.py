@@ -6,8 +6,8 @@ def conectar_banco():
     try:
         conn = psycopg2.connect(
             database ="League_of_legends",
-            user ="bruno",
-            password ="admin444",
+            user ="seu_usuario",
+            password ="sua_senha_criada",
             host ="localhost",
             port ="5432"
         )
