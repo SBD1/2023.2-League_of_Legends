@@ -92,19 +92,34 @@ CREATE TABLE Boss (
 );
 
 CREATE TABLE Itens_de_Tank (
-	id_item int,
+	id_item int PRIMARY KEY,
+	nome_item varchar(35) NOT NULL,
+	nome_area varchar(15) NOT NULL,
+	id_sala int, 
+	preco_item int NOT NULL,
+	dano_item int NOT NULL,	
 	vida_adicional int NOT NULL,
 	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Itens_de_mago (
-	id_item int,
+	id_item int PRIMARY KEY,
+	nome_item varchar(35) NOT NULL,
+	nome_area varchar(15) NOT NULL,
+	id_sala int, 
+	preco_item int NOT NULL,
+	dano_item int NOT NULL,	
 	dano_magico_adicional int NOT NULL,
 	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
 
 CREATE TABLE Itens_de_lutador (
-	id_item int,
+	id_item int PRIMARY KEY,
+	nome_item varchar(35) NOT NULL,
+	nome_area varchar(15) NOT NULL,
+	id_sala int, 
+	preco_item int NOT NULL,
+	dano_item int NOT NULL,	
 	dano_fisico_adicional int NOT NULL,
 	FOREIGN KEY (id_item) REFERENCES Item (id_item)
 );
