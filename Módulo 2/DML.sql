@@ -22,7 +22,7 @@ VALUES
 
 
 INSERT INTO PC (id_pc, id_sala, id_personagem, slot_item, nome_conta)
-VALUES (1, 1, 10, 4, 'user');
+VALUES (1, 1, 10, 4, 60, 3, 70, 10, 55, 30,'user');
 
 INSERT INTO NPC (id_npc, funcao)
 VALUES 
