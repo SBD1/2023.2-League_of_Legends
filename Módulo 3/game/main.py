@@ -1,11 +1,13 @@
 import psycopg2
+import random
+
 
 def conectar_banco():
     try:
         conn = psycopg2.connect(
             database ="League_of_legends",
-            user ="seu_usuario_local",
-            password ="sua_senha_criada",
+            user ="bruno",
+            password ="admin444",
             host ="localhost",
             port ="5432"
         )
@@ -17,6 +19,52 @@ def conectar_banco():
         print("Erro ao conectar ao banco de dados:", e)
         return None
     
+
+def criar_novo_personagem(conn):
+    cursor = conn.cursor()
+    
+    print("Criando um novo personagem:")
+    id = int(input("Digite o ID do personagem: "))
+    nome = input("Digite o nome do personagem: ")
+    especie = input("Digite a espécie do personagem: ")
+    classe = input("Digite a classe do personagem: ")
+    vida = int(input("Digite a quantidade de vida do personagem: "))
+    nivel = int(input("Digite o nível do personagem: "))
+    energia = int(input("Digite a quantidade de energia do personagem: "))
+    dano = int(input("Digite o dano do personagem: "))
+    forca = int(input("Digite a força do personagem: "))
+    cura = int(input("Digite a cura do personagem: "))
+    historia = input("Digite a história do personagem: ")
+    
+    try:
+        cursor.execute("INSERT INTO Personagem (id_personagem, nome_personagem, especie, classe, vida, nivel, energia, dano, forca, cura, historia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                       (id, nome, especie, classe, vida, nivel, energia, dano, forca, cura, historia))
+        conn.commit()
+        print("Novo personagem criado com sucesso!")
+    except psycopg2.Error as e:
+        conn.rollback()
+        print("Erro ao criar o novo personagem:", e)
+
+
+def carregar_personagem_existente(conn):
+    cursor = conn.cursor()
+    
+    print("Carregando um personagem existente:")
+    id_personagem = input("Digite o ID do personagem que deseja carregar: ")
+    cursor.execute("SELECT * FROM Personagem WHERE id_personagem = %s", (id_personagem,))
+    personagem = cursor.fetchone()
+    if personagem:
+        print("\nPersonagem carregado com sucesso!")
+        print(f"Informações do personagem:")
+        print(f"Nome: {personagem[1]}")
+        print(f"Espécie: {personagem[2]}")
+        print(f"Classe: {personagem[3]}")
+   
+        
+        return id_personagem
+    else:
+        print("Personagem não encontrado.")
+        return None
 
 
 def exibir_info_personagem(conn, id_personagem):
@@ -38,107 +86,139 @@ def exibir_info_personagem(conn, id_personagem):
     else:
         print("Personagem não encontrado!")
 
-def exibir_npcs_sala(conn, id_sala):
-    cursor = conn.cursor()
-    cursor.execute("SELECT id_npc, funcao FROM NPC WHERE id_npc IN (SELECT id_personagem FROM PC WHERE id_sala = %s)", (id_sala,))
-    npcs = cursor.fetchall()
-    if npcs:
-        print("\nNPCs na sala:")
-        for npc in npcs:
-            print(f"ID: {npc[0]}, Função: {npc[1]}")
-    else:
-        print("Não há NPCs nesta sala.")
 
-def exibir_info_item_tank(conn, id_sala):
+def obter_detalhes_personagem(conn, id_personagem):
     cursor = conn.cursor()
-    cursor.execute("SELECT id_item, nome_item, preco_item, dano_item, vida_adicional FROM Itens_de_Tank ")
-    item = cursor.fetchone()
-    if item:
-        print(f"ID do Item: {item[1]}")
-        print(f"Nome: {item[2]}")
-        print(f"Preço: {item[3]}")
-        print(f"Dano: {item[4]}")
-        print(f"Vida adicional: {item[5]}")
-    else:
-        print("Itens não encontrados!")
+    cursor.execute("SELECT * FROM Personagem WHERE id_personagem = %s", (id_personagem,))
+    personagem = cursor.fetchone()
+    return personagem
 
-def exibir_info_item_mago(conn, id_sala):
-    cursor = conn.cursor()
-    cursor.execute("SELECT id_item, nome_item, preco_item, dano_item, dano_magico_adicional FROM Itens_de_mago ")
-    item = cursor.fetchone()
-    if item:
-        print(f"ID do Item: {item[1]}")
-        print(f"Nome: {item[2]}")
-        print(f"Preço: {item[3]}")
-        print(f"Dano: {item[4]}")
-        print(f"Dano magico adicional: {item[5]}")
-    else:
-        print("Itens não encontrados!")
+def realizar_batalha(personagem_jogador, vida_jogador, vida_monstro):
+    print(f"Nome do monstro: {personagem_jogador[1]}")
+    print(f"Espécie: {personagem_jogador[2]}")
+    print(f"Classe: {personagem_jogador[3]}")
+    print(f"Vida do jogador: {vida_jogador}")
+    print(f"Vida do monstro: {vida_monstro}\n")
+    
+    while vida_jogador > 0 and vida_monstro > 0:
 
-def exibir_info_item_lutador(conn, id_sala):
-    cursor = conn.cursor()
-    cursor.execute("SELECT id_item, nome_item, preco_item, dano_item, dano_fisico_adicional FROM Itens_de_lutador ")
-    item = cursor.fetchone()
-    if item:
-        print(f"ID do Item: {item[1]}")
-        print(f"Nome: {item[2]}")
-        print(f"Preço: {item[3]}")
-        print(f"Dano: {item[4]}")
-        print(f"Dano fisico adicional: {item[5]}")
-    else:
-        print("Itens não encontrados!")
+        ataque_jogador = random.randint(1, 70)
+        ataque_monstro = random.randint(1, 70)
+        
+        vida_jogador -= ataque_monstro
+        vida_monstro -= ataque_jogador
+        
+        print(f"Você atacou o monstro causando {ataque_jogador} de dano.")
+        print(f"O monstro atacou você causando {ataque_monstro} de dano.")
+        print(f"Sua vida: {vida_jogador}")
+        print(f"Vida do monstro: {vida_monstro}\n")
+        
+        escolha = input("Digite 1 para continuar para a próxima etapa ou 2 para desistir do combate: ")
+        
+        if escolha == "2":
+            return False e
+        
+    return vida_jogador > 0
 
-def comprar_item(conn, nome_loja, id_sala, id_personagem, id_item):
+def listar_personagens_predefinidos(conn):
     cursor = conn.cursor()
-    cursor.execute("SELECT preco_item FROM Item WHERE id_sala = %s AND id_item = %s", (id_sala, id_item))
-    preco = cursor.fetchone()
-    if preco:
-        preco = preco[0]
-        cursor.execute("SELECT energia FROM Personagem WHERE id_personagem = %s", (id_personagem,))
-        energia = cursor.fetchone()[0]
-        if energia >= preco:
-            cursor.execute("UPDATE Personagem SET energia = energia - %s WHERE id_personagem = %s", (preco, id_personagem))
-            print("Item comprado com sucesso!")
+    cursor.execute("SELECT * FROM Personagem WHERE id_personagem BETWEEN 10 AND 50 ORDER BY id_personagem")
+    personagens = cursor.fetchall()
+    
+    print("\nPersonagens disponíveis para seleção:")
+    for personagem in personagens:
+        print(f"{personagem[0]}. {personagem[1]} - Espécie: {personagem[2]}, Classe: {personagem[3]}")
+    
+    escolha = int(input("Escolha o ID do personagem para a batalha: "))
+    if escolha in [10, 20, 30, 40, 50]:
+        return escolha
+    else:
+        print("Escolha inválida.")
+        return None
+
+
+def escolher_monstro_para_batalha(conn):
+    cursor = conn.cursor()
+    
+    monstros_ids = [100, 200, 300, 400, 500]
+    id_monstro = random.choice(monstros_ids)
+    
+    cursor.execute("SELECT * FROM Personagem WHERE id_personagem = %s", (id_monstro,))
+    monstro = cursor.fetchone()
+    
+
+    if monstro:
+        print("\nVocê encontrou um oponente!")
+        
+        vida_monstro = monstro[4]
+        personagem_jogador = obter_detalhes_personagem(conn, id_monstro)
+       
+ 
+        vida_jogador = personagem_jogador[4]
+  
+        vitoria_jogador = realizar_batalha(personagem_jogador, vida_jogador, vida_monstro)
+        
+
+        if not vitoria_jogador:
+            print("Você desistiu do combate ou foi derrotado!")
         else:
-            print("Você não tem energia suficiente para comprar este item.")
+            print("Você venceu a batalha!")
     else:
-        print("Item não encontrado nesta loja.")
+        print("Não foi possível encontrar um monstro para a batalha.")
 
 def jogo():
     conn = conectar_banco()
     if conn:
-
         print("Bem-vindo ao jogo League of Legends - Terminal Edition!")
+        id_personagem = None
         
         while True:
             print("\nEscolha uma ação:")
-            print("1. Ver informações do personagem")
-            print("2. Ver NPCs na sala")
-            print("3. Comprar item em uma loja")
-            print("4. Sair")
+            if id_personagem:
+                print("1. Ver informações do personagem")
+                print("2. Avançar pela rota superior")
+                print("3. Avançar pela rota inferior")
+                print("4. Avançar pela rota do meio")
+                print("5. Sair")
+            else:
+                print("1. Criar novo personagem")
+                print("2. Carregar um personagem existente")
+                print("3. Escolher um personagem disponível para a batalha")
+                print("4. Sair")
             
             escolha = input("Escolha uma opção: ")
             
-            if escolha == "1":
-                id_personagem = input("Digite o ID do personagem: ")
-                exibir_info_personagem(conn, id_personagem)
-            elif escolha == "2":
-                id_sala = input("Digite o ID da sala: ")
-                exibir_npcs_sala(conn, id_sala)
-            elif escolha == "3":
-                nome_loja = input("Digite o nome da loja: ")
-                id_sala = input("Digite o ID da sala: ")
-                id_personagem = input("Digite o ID do personagem: ")
-                id_item = input("Digite o ID do item que deseja comprar: ")
-                comprar_item(conn, nome_loja, id_sala, id_personagem, id_item)
-            elif escolha == "4":
-                print("Obrigado por jogar! Até mais!")
-                break
+            if id_personagem:
+                if escolha == "1":
+                    exibir_info_personagem(conn, id_personagem)
+                elif escolha == "2":
+                    print("Avançando pela rota superior...")
+                    escolher_monstro_para_batalha(conn)
+                elif escolha == "3":
+                    print("Avançando pela rota inferior...")
+                    escolher_monstro_para_batalha(conn)
+                elif escolha == "4":
+                    print("Avançando pela rota do meio...")
+                    escolher_monstro_para_batalha(conn)
+                elif escolha == "5":
+                    print("Obrigado por jogar! Até mais!")
+                    break
+                else:
+                    print("Escolha inválida. Tente novamente.")
             else:
-                print("Escolha inválida. Tente novamente.")
+                if escolha == "1":
+                    criar_novo_personagem(conn)
+                elif escolha == "2":
+                    id_personagem = carregar_personagem_existente(conn)
+                elif escolha == "3":
+                    id_personagem = listar_personagens_predefinidos(conn)
+                elif escolha == "4":
+                    print("Obrigado por jogar! Até mais!")
+                    break
+                else:
+                    print("Escolha inválida. Tente novamente.")
         
         conn.close()
-
 
 if __name__ == "__main__":
     jogo()
