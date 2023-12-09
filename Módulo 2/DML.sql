@@ -21,8 +21,8 @@ VALUES
   (50, 'Sett', 'Humoide', 'Lutador', 80, 3, 65, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.');
 
 
-INSERT INTO PC (id_pc, id_sala, id_personagem, slot_item, vida, nivel, energia, dano, forca, cura, nome_conta)
-VALUES (1, 1, 10, 4, 60, 3, 70, 10, 55, 30, 'user');
+INSERT INTO PC (id_pc, id_sala, id_personagem, slot_item, gold, vida, nivel, energia, dano, forca, cura, nome_conta)
+VALUES (1, 1, 10, 4, 100, 60, 3, 70, 10, 55, 30, 'user');
 
 INSERT INTO NPC (id_npc, funcao)
 VALUES 
