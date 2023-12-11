@@ -19,6 +19,7 @@ CREATE TABLE Personagem (
 	nivel int NOT NULL,
 	energia int NOT NULL,
 	dano int NOT NULL,
+	dano_extra int,
 	forca int NOT NULL,
 	cura int NOT NULL,
 	historia varchar(1000)
