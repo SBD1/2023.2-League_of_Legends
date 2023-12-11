@@ -84,3 +84,21 @@ $personagem_existe$ LANGUAGE plpgsql;
 CREATE TRIGGER personagem_existe
 BEFORE INSERT ON Personagem 
 FOR EACH ROW EXECUTE PROCEDURE personagem_existe();
+
+-----------------------------------------------------------------
+CREATE FUNCTION check_nivel_missao() RETURNS trigger AS $check_nivel_missao$
+
+BEGIN
+    SELECT P.nome_personagem, M.descricao AS descricao_missao, M.nivel_necessario 
+    FROM Personagem P JOIN Missoes M ON P.id_npc = M.id_npc
+    WHERE P.id_personagem = 'id_personagem' AND M.id_missao = 'id_missao' AND P.nivel >= M.nivel_necessario;
+    IF M.nivel_necessario < P.nivel
+        RAISE EXCEPTION 'Voce nao tem nivel para a missao'
+    END IF;
+    RETURN missoes;
+END;
+$check_nivel_missao$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_nivel_missao
+BEFORE INSERT OR UPDATE missoes
+FOR EACH ROW EXECUTE PROCEDURE check_nivel_missao();
