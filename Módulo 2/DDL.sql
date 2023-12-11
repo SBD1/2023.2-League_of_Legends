@@ -27,18 +27,9 @@ CREATE TABLE Personagem (
 
 CREATE TABLE PC (
 	id_pc int PRIMARY KEY,
-	id_sala int, 
 	id_personagem int,
 	gold int,
-	vida int,
-	nivel int,
-	energia int,
-	dano int,
-	forca int,
-	cura int,
 	slot_item int,
-	nome_conta varchar(20) NOT NULL,
-	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala),
 	FOREIGN KEY (id_personagem) REFERENCES Personagem (id_personagem) 
 );
 
@@ -68,11 +59,7 @@ CREATE TABLE Area_de_Recuperacao (
 
 CREATE TABLE Item (
 	id_item int PRIMARY KEY,
-	nome_item varchar(35) NOT NULL,
-	nome_area varchar(15) NOT NULL,
 	id_sala int, 
-	preco_item int NOT NULL,
-	dano_item int NOT NULL,	
 	FOREIGN KEY (id_sala) REFERENCES Sala (id_sala)
 );
 
@@ -101,8 +88,6 @@ CREATE TABLE Boss (
 CREATE TABLE Itens_de_Tank (
 	id_item int PRIMARY KEY,
 	nome_item varchar(35) NOT NULL,
-	nome_area varchar(15) NOT NULL,
-	id_sala int, 
 	preco_item int NOT NULL,
 	dano_item int NOT NULL,	
 	vida_adicional int NOT NULL,
@@ -112,8 +97,6 @@ CREATE TABLE Itens_de_Tank (
 CREATE TABLE Itens_de_mago (
 	id_item int PRIMARY KEY,
 	nome_item varchar(35) NOT NULL,
-	nome_area varchar(15) NOT NULL,
-	id_sala int, 
 	preco_item int NOT NULL,
 	dano_item int NOT NULL,	
 	dano_magico_adicional int NOT NULL,
@@ -123,8 +106,6 @@ CREATE TABLE Itens_de_mago (
 CREATE TABLE Itens_de_lutador (
 	id_item int PRIMARY KEY,
 	nome_item varchar(35) NOT NULL,
-	nome_area varchar(15) NOT NULL,
-	id_sala int, 
 	preco_item int NOT NULL,
 	dano_item int NOT NULL,	
 	dano_fisico_adicional int NOT NULL,
