@@ -1,0 +1,5 @@
+Vídeo de apresentação da Entrega Final da disciplina.
+
+O grupo optou por um repositório completo mas com o menor número de arquivos possível para facilitar a navegação e o entendimento.
+
+Segue o link para o vídeo da apresentação: https://www.youtube.com/watch?v=SH8nJZMWtYU
