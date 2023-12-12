@@ -14,11 +14,19 @@ VALUES
 
 INSERT INTO Personagem (id_personagem, nome_personagem, especie, classe, vida, nivel, energia, dano, forca, cura, historia)
 VALUES 
+-- Personagens jogáveis do League of Legends adicionados ao banco:
   (10, 'Jinx', 'Humana', 'Atiradora', 470, 3, 70, 10, 55, 30, 'Uma criminosa impulsiva e maníaca de Zaun, Jinx vive para disseminar o caos sem se preocupar com as consequências.'),
   (20, 'Zed', 'Humana', 'Assasino', 480, 3, 80, 15, 65, 35, 'O homem conhecido como Zed, ex-membro da honorável Ordem Kinkou, agora é líder de um bando de assassinos.'),
   (30, 'Annie', 'Humana', 'Mago', 490, 3, 70, 15, 70, 30, 'Perigosa, mas adoravelmente precoce, Annie é uma pequena maga com imenso poder piromaníaco.'),
   (40, 'Dr.Mundo', 'Humana', 'Tank', 500, 3, 60, 70, 70, 55, 'Dr. Mundo enche-se de produtos químicos, curando instantaneamente uma porcentagem da própria Vida perdida.'),
-  (50, 'Sett', 'Humoide', 'Lutador', 510, 3, 65, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.');
+  (50, 'Sett', 'Humoide', 'Lutador', 510, 3, 65, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.');	
+
+-- Monstros inimigos da batalha adicionados ao banco:
+  (100, 'Drag', 'Monstro', 'Dragão', 500, 3, 70, 10, 55, 30, 'Uma criminosa impulsiva e maníaca de Zaun, Jinx vive para disseminar o caos sem se preocupar com as consequências.'),
+  (200, 'Baron', 'Monstro', 'Dragão', 600, 3, 80, 15, 65, 35, 'O homem conhecido como Zed, ex-membro da honorável Ordem Kinkou, agora é líder de um bando de assassinos.'),
+  (300, 'Arauto', 'Monstro', 'Fera', 400, 3, 70, 15, 70, 30, 'Perigosa, mas adoravelmente precoce, Annie é uma pequena maga com imenso poder piromaníaco.'),
+  (400, 'Blue', 'Monstro', 'Golem', 300, 3, 60, 70, 70, 55, 'Dr. Mundo enche-se de produtos químicos, curando instantaneamente uma porcentagem da própria Vida perdida.'),
+  (500, 'Red', 'Monstro', 'Golem', 300, 3, 65, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.');
 
 
 INSERT INTO PC (id_pc, id_personagem, slot_item, gold)
