@@ -7,7 +7,7 @@ def conectar_banco():
         conn = psycopg2.connect(
             database ="League_of_legends",
             user ="seu_usuario_criado",
-            password ="sua_senha_criada",
+            password ="sua_sennha_criada",
             host ="localhost",
             port ="5432"
         )
@@ -59,13 +59,11 @@ def carregar_personagem_existente(conn):
         print(f"Nome: {personagem[1]}")
         print(f"Espécie: {personagem[2]}")
         print(f"Classe: {personagem[3]}")
-        # Exibir mais informações, se necessário
-        
+
         return id_personagem
     else:
         print("Personagem não encontrado.")
         return None
-
 
 
 def exibir_info_personagem(conn, id_personagem):
@@ -270,7 +268,6 @@ def escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota):
 def batalha_final(conn, id_personagem):
     cursor = conn.cursor()
 
-
     monstros_ids = [100, 200, 300, 400, 500]
     id_monstro_final = random.choice(monstros_ids)
 
@@ -288,7 +285,7 @@ def batalha_final(conn, id_personagem):
         if not vitoria_jogador:
             print("Você foi derrotado na batalha final!")
         else:
-            print("Parabéns! Você venceu a batalha final e destruiu o Nexus!")
+           print("Parabéns! Você venceu a batalha final e conquistou o Nexus, agora você é detentor de um dos Cristais mais poderosos de toda Runeterra, use-o com sabedoria. FIM!")
             
           
 
@@ -296,6 +293,7 @@ def jogo():
     conn = conectar_banco()
     if conn:
         print("Bem-vindo ao jogo League of Legends - Terminal Edition!")
+        print("\nSummoner's Rift está localizado em uma remota floresta entre Freljord e as Montanhas Ironspine. Summoner's Rift é um dos poucos locais em Valoran onde a energia mágica está em sua maior concentração, fazendo com que seja muito procurado para buscar esforços mágicos. A energia mágica é tão grande que transformou a vida selvagem local. De sapos gigantes à lobos com duas cabeças, bem como a residência de espécies como camaleões, patos coelhos com chifres e borboletas. Este lugar também atraiu a presença de um Dragão. O Rift é surpreendido pelo ressurgimento do Barão Na'Shor, uma grande Serpente/Minhoca que grande parte acreditava estar morta há séculos. Ele tem a sua corrupção afetando a terra em volta dele")
         id_personagem = None
         id_monstro_rota = None
 
@@ -321,12 +319,15 @@ def jogo():
                     exibir_info_personagem(conn, id_personagem)
                 elif escolha == "2":
                     print("Avançando pela rota superior...")
+                    print("Quando a escuridão abraça Summoner's Rift, o cenário majestoso da rota superior revela-se como um campo de batalha impiedoso, onde os guerreiros mais resistentes e destemidos se encontram.")
                     id_monstro_rota = escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota)
                 elif escolha == "3":
                     print("Avançando pela rota inferior...")
+                    print("A rota inferior permanece como um cenário dinâmico, palco de incontáveis contendas, onde cada embate contribui para a epopeia que é Summoner's Rift. No coração deste campo de batalha, a história continua a se desenrolar, aguardando os próximos heróis que ousarão deixar sua marca neste reino de desafios e glória.")
                     id_monstro_rota = escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota)
                 elif escolha == "4":
                     print("Avançando pela rota do meio...")
+                    print("Ao entardecer, quando a luminosidade do dia se dissipa e dá lugar ao crepúsculo, a rota do meio emerge como o epicentro de estratégia e confronto em Summoner's Rift.")
                     id_monstro_rota = escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota)
                 elif escolha == "5":
                     print("Entrando na loja para comprar itens...")
