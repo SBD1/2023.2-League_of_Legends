@@ -67,6 +67,7 @@ def carregar_personagem_existente(conn):
         return None
 
 
+
 def exibir_info_personagem(conn, id_personagem):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Personagem WHERE id_personagem = %s", (id_personagem,))
@@ -147,7 +148,86 @@ def escolher_personagem_predefinido(conn):
     return id_personagem_jogador
 
 
-def escolher_monstro_para_batalha(conn, id_personagem):
+def entrar_loja(conn, id_personagem):
+    while True:
+        print("\nBem-vindo à Loja!")
+        print("Escolha uma opção:")
+        print("1. Comprar itens de Tank")
+        print("2. Comprar itens de Mago")
+        print("3. Comprar itens de Lutador")
+        print("4. Voltar para a escolha de rotas")
+
+        escolha = input("Escolha uma opção da loja: ")
+
+        if escolha == "1":
+            comprar_item(conn, id_personagem, "Itens_de_Tank")
+        elif escolha == "2":
+            comprar_item(conn, id_personagem, "Itens_de_mago")
+        elif escolha == "3":
+            comprar_item(conn, id_personagem, "Itens_de_lutador")
+        elif escolha == "4":
+            print("Voltando para a escolha de rotas...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+
+def comprar_item(conn, id_personagem, tipo_item):
+    cursor = conn.cursor()
+
+    cursor.execute(f"SELECT * FROM {tipo_item}")
+    itens = cursor.fetchall()
+
+    print("\nItens disponíveis para compra:")
+    for item in itens:
+        print(f"{item[0]}. {item[1]} - Preço: {item[2]}, Atributo Adicional: {item[3]}")
+
+    escolha_item = input("Escolha o número do item que deseja comprar (ou 'voltar'): ")
+
+    if escolha_item.lower() == "voltar":
+        return
+
+    try:
+        escolha_item = int(escolha_item)
+        item_escolhido = next(item for item in itens if item[0] == escolha_item)
+
+        preco_item = item_escolhido[2]
+        atributo_adicional = item_escolhido[3]
+
+        cursor.execute("SELECT energia, dano FROM Personagem WHERE id_personagem = %s", (id_personagem,))
+        dados_personagem = cursor.fetchone()
+        energia_atual = dados_personagem[0]
+        dano_jogador = dados_personagem[1]
+
+        if energia_atual >= preco_item:
+            energia_restante = energia_atual - preco_item
+            dano_item_fixo = atributo_adicional
+
+            if tipo_item == "Itens_de_mago" or tipo_item == "Itens_de_lutador":
+                dano_adicional_randomico = random.randint(1, item_escolhido[4])
+                dano_item_total = dano_item_fixo + dano_adicional_randomico
+                print(f"Quantidade fixa de dano do jogador após a compra: {dano_item_fixo}")
+                print(f"Quantidade de dano randômico possível de obter: {dano_adicional_randomico}")
+            else:
+                vida_adicional = random.randint(1, item_escolhido[4])
+                dano_item_total = vida_adicional
+                print(f"Quantidade de cura adicional: {vida_adicional}")
+
+            cursor.execute(f"UPDATE Personagem SET energia = %s, dano = dano + %s WHERE id_personagem = %s",
+                           (energia_restante, dano_item_total, id_personagem))
+
+            conn.commit()
+            print("Item comprado com sucesso!")
+        else:
+            print("Você não possui energia suficiente para comprar este item.")
+
+    except ValueError:
+        print("Escolha inválida. Tente novamente.")
+    except StopIteration:
+        print("Item não encontrado.")
+
+
+def escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota):
     cursor = conn.cursor()
 
     monstros_ids = [100, 200, 300, 400, 500]
@@ -190,6 +270,7 @@ def escolher_monstro_para_batalha(conn, id_personagem):
 def batalha_final(conn, id_personagem):
     cursor = conn.cursor()
 
+
     monstros_ids = [100, 200, 300, 400, 500]
     id_monstro_final = random.choice(monstros_ids)
 
@@ -208,14 +289,16 @@ def batalha_final(conn, id_personagem):
             print("Você foi derrotado na batalha final!")
         else:
             print("Parabéns! Você venceu a batalha final e destruiu o Nexus!")
-
+            
+          
 
 def jogo():
     conn = conectar_banco()
     if conn:
         print("Bem-vindo ao jogo League of Legends - Terminal Edition!")
         id_personagem = None
-        
+        id_monstro_rota = None
+
         while True:
             print("\nEscolha uma ação:")
             if id_personagem:
@@ -223,7 +306,8 @@ def jogo():
                 print("2. Avançar pela rota superior")
                 print("3. Avançar pela rota inferior")
                 print("4. Avançar pela rota do meio")
-                print("5. Sair")
+                print("5. Entrar na loja para comprar itens")
+                print("6. Sair")
             else:
                 print("1. Criar novo personagem")
                 print("2. Carregar um personagem existente")
@@ -237,14 +321,30 @@ def jogo():
                     exibir_info_personagem(conn, id_personagem)
                 elif escolha == "2":
                     print("Avançando pela rota superior...")
-                    escolher_monstro_para_batalha(conn, id_personagem)
+                    id_monstro_rota = escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota)
                 elif escolha == "3":
                     print("Avançando pela rota inferior...")
-                    escolher_monstro_para_batalha(conn, id_personagem)
+                    id_monstro_rota = escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota)
                 elif escolha == "4":
                     print("Avançando pela rota do meio...")
-                    escolher_monstro_para_batalha(conn, id_personagem)
+                    id_monstro_rota = escolher_monstro_para_batalha(conn, id_personagem, id_monstro_rota)
                 elif escolha == "5":
+                    print("Entrando na loja para comprar itens...")
+                    print("Escolha o tipo de item para comprar:")
+                    print("1. Itens de Tank")
+                    print("2. Itens de Mago")
+                    print("3. Itens de Lutador")
+                    escolha_tipo_item = input("Escolha um tipo de item: ")
+
+                    if escolha_tipo_item == "1":
+                        comprar_item(conn, id_personagem, "Itens_de_Tank")
+                    elif escolha_tipo_item == "2":
+                        comprar_item(conn, id_personagem, "Itens_de_mago")
+                    elif escolha_tipo_item == "3":
+                        comprar_item(conn, id_personagem, "Itens_de_lutador")
+                    else:
+                        print("Opção inválida. Voltando ao menu principal.")
+                elif escolha == "6":
                     print("Obrigado por jogar! Até mais!")
                     break
                 else:
@@ -255,15 +355,14 @@ def jogo():
                 elif escolha == "2":
                     id_personagem = carregar_personagem_existente(conn)
                 elif escolha == "3":
-                    id_personagem = listar_personagens_predefinidos(conn)
+                    id_personagem = escolher_personagem_predefinido(conn)
                 elif escolha == "4":
                     print("Obrigado por jogar! Até mais!")
                     break
                 else:
                     print("Escolha inválida. Tente novamente.")
-
-    
-    """      conn.close()        """
+        
+        conn.close()
 
 if __name__ == "__main__":
     jogo()
