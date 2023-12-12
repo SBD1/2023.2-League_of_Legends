@@ -15,11 +15,11 @@ VALUES
 INSERT INTO Personagem (id_personagem, nome_personagem, especie, classe, vida, nivel, energia, dano, forca, cura, historia)
 VALUES 
 -- Personagens jogáveis do League of Legends adicionados ao banco:
-  (10, 'Jinx', 'Humana', 'Atiradora', 470, 3, 70, 10, 55, 30, 'Uma criminosa impulsiva e maníaca de Zaun, Jinx vive para disseminar o caos sem se preocupar com as consequências.'),
-  (20, 'Zed', 'Humano', 'Assasino', 480, 3, 80, 15, 65, 35, 'O homem conhecido como Zed, ex-membro da honorável Ordem Kinkou, agora é líder de um bando de assassinos.'),
-  (30, 'Annie', 'Humana', 'Mago', 490, 3, 70, 15, 70, 30, 'Perigosa, mas adoravelmente precoce, Annie é uma pequena maga com imenso poder piromaníaco.'),
-  (40, 'Dr.Mundo', 'Humano', 'Tank', 500, 3, 60, 70, 70, 55, 'Dr. Mundo enche-se de produtos químicos, curando instantaneamente uma porcentagem da própria Vida perdida.'),
-  (50, 'Sett', 'Humoide', 'Lutador', 510, 3, 65, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.'),
+  (10, 'Jinx', 'Humana', 'Atiradora', 470, 3, 500, 10, 55, 30, 'Uma criminosa impulsiva e maníaca de Zaun, Jinx vive para disseminar o caos sem se preocupar com as consequências.'),
+  (20, 'Zed', 'Humano', 'Assasino', 480, 3, 500, 15, 65, 35, 'O homem conhecido como Zed, ex-membro da honorável Ordem Kinkou, agora é líder de um bando de assassinos.'),
+  (30, 'Annie', 'Humana', 'Mago', 490, 3, 500, 15, 70, 30, 'Perigosa, mas adoravelmente precoce, Annie é uma pequena maga com imenso poder piromaníaco.'),
+  (40, 'Dr.Mundo', 'Humano', 'Tank', 500, 3, 500, 70, 70, 55, 'Dr. Mundo enche-se de produtos químicos, curando instantaneamente uma porcentagem da própria Vida perdida.'),
+  (50, 'Sett', 'Humoide', 'Lutador', 510, 3, 500, 80, 70, 40, 'Com aparência humanoide, Sett é considerado um colosso e suas habilidades serão baseadas em seu ataque básico.'),
   (60, 'Akali', 'Humana', 'Assassina', 490, 3, 500, 90, 70, 30, 'Abandonando a Ordem Kinkou e seu título de Punho das Sombras, Akali agora ataca sozinha, pronta para ser a arma mortal que seu povo precisa.'),
   (70, 'Bardo', 'Humoide', 'Mago', 460, 3, 500, 70, 65, 30, 'Viajante de galáxias distantes, Bardo é um agente do acaso que luta para manter um equilíbrio em que a vida possa suportar a indiferença do caos.'),
   (80, 'Briar', 'Humoide', 'Assassina', 470, 3, 500, 60, 65, 20, 'A incontrolável sede de sangue de Briar, um experimento fracassado da Rosa Negra, exigia uma estrutura especial para controlar sua mente frenética.'); 
